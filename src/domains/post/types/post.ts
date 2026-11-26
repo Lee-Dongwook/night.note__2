@@ -19,6 +19,7 @@ export interface Post {
 
   image: string;
   imageAlt: string;
+  ogImage?: string;
 
   publishedAt: string;
   updatedAt?: string;

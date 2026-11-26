@@ -6,8 +6,9 @@
     "excerpt": "오늘은 여기까지, 내일은 조금 더 웃을 수 있기를 🥹",
     "content": "오늘 하루가 조금 아쉬웠어도,\n내일이 그 아쉬움을\n이어받을 필요는 없어.\n\n오늘은 여기까지면 충분해.\n\n내일의 너는,\n오늘보다 조금 더 웃을 수 있을 거야.",
     "category": "comfort",
-    "image": "",
-    "imageAlt": "",
+    "image": "/images/posts/post-001.webp",
+    "imageAlt": "내일은 조금 더 웃을 수 있기를",
+    "ogImage": "/images/og/post-001.png",
     "publishedAt": "2026-11-26T09:00:00+09:00",
     "featured": true,
     "status": "published"

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 
 import { postRepository } from "@/domains/post/repositories";
@@ -35,6 +36,7 @@ export async function generateMetadata({
     title: post.title,
     description: post.excerpt,
     path: `/archive/${post.slug}`,
+    image: post.ogImage || post.image || "/images/og/default.png",
   });
 }
 
@@ -85,12 +87,13 @@ export default async function PostPage({ params }: PostPageProps) {
         </header>
 
         {post.image && (
-          <figure className="mb-12">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+          <figure className="relative mb-12 aspect-4/5 w-full overflow-hidden">
+            <Image
               src={post.image}
               alt={post.imageAlt}
-              className="h-auto w-full object-cover"
+              fill
+              sizes="(max-width: 768px) 100vw, 768px"
+              className="object-cover"
             />
           </figure>
         )}

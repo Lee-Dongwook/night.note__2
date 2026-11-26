@@ -5,6 +5,7 @@ interface MetadataOptions {
   title?: string;
   description?: string;
   path?: string;
+  image?: string;
   noIndex?: boolean;
 }
 
@@ -12,11 +13,13 @@ export function createMetadata({
   title,
   description = SITE.description,
   path = "",
+  image = "/images/og/default.png",
   noIndex = false,
 }: MetadataOptions = {}): Metadata {
   const pageTitle = title ? `${title} | ${SITE.name}` : SITE.title;
 
   const canonicalUrl = new URL(path, SITE.url).toString();
+  const imageUrl = new URL(image, SITE.url).toString();
 
   return {
     title: pageTitle,
@@ -32,11 +35,23 @@ export function createMetadata({
       title: pageTitle,
       description,
       url: canonicalUrl,
+      images: [
+        {
+          url: imageUrl,
+          alt: pageTitle,
+        },
+      ],
     },
     twitter: {
-      card: "summary",
+      card: "summary_large_image",
       title: pageTitle,
       description,
+      images: [
+        {
+          url: imageUrl,
+          alt: pageTitle,
+        },
+      ],
     },
     robots: noIndex
       ? {
