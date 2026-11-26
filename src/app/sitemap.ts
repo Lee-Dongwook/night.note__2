@@ -2,6 +2,10 @@ import type { MetadataRoute } from "next";
 import { SITE } from "@/lib/constants/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  if (process.env.NODE_ENV !== "production") {
+    return [];
+  }
+
   const routes = ["", "/archive", "/about"];
 
   return routes.map((route) => ({
