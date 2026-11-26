@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { SITE } from "../constants/site";
+import { SITE } from "@/lib/constants/site";
 
 interface MetadataOptions {
   title?: string;
