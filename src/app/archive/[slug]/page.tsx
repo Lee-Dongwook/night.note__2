@@ -54,7 +54,7 @@ export default async function PostPage({ params }: PostPageProps) {
     path: `/archive/${post.slug}`,
     publishedAt: post.publishedAt,
     updatedAt: post.updatedAt,
-    image: post.image,
+    image: post.ogImage || post.image,
   });
 
   return (

@@ -43,25 +43,44 @@ export function createArticleStructuredData({
   updatedAt,
   image,
 }: ArticleStructuredDataOptions) {
+  const articleUrl = new URL(path, SITE.url).toString();
+
+  const imageUrl = image ? new URL(image, SITE.url).toString() : undefined;
+
   return {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": "BlogPosting",
+    "@id": `${articleUrl}#article`,
     headline: title,
     description,
-    mainEntityOfPage: new URL(path, SITE.url).toString(),
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": articleUrl,
+    },
+    url: articleUrl,
     datePublished: publishedAt,
-    ...(updatedAt && { dateModified: updatedAt }),
-    ...(image && { image: new URL(image, SITE.url).toString() }),
+    dateModified: updatedAt ?? publishedAt,
+    ...(imageUrl && {
+      image: {
+        "@type": "ImageObject",
+        url: imageUrl,
+      },
+    }),
     author: {
       "@type": "Organization",
+      "@id": `${SITE.url}/#organization`,
       name: SITE.name,
       url: SITE.url,
     },
     publisher: {
       "@type": "Organization",
+      "@id": `${SITE.url}/#organization`,
       name: SITE.name,
       url: SITE.url,
     },
     inLanguage: SITE.language,
+    isPartOf: {
+      "@id": `${SITE.url}/#website`,
+    },
   };
 }
