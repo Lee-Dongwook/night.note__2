@@ -18,7 +18,7 @@ export default async function Home() {
   return (
     <main>
       {/* Hero */}
-      <section className="container flex min-h-[680px] flex-col items-center justify-center text-center">
+      <section className="container flex min-h-170 flex-col items-center justify-center text-center">
         <p className="mb-10 text-[10px] tracking-[0.35em] text-muted">
           A LETTER TO YOURSELF
         </p>
@@ -136,7 +136,7 @@ export default async function Home() {
             href={SITE.instagram.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-10 border border-border px-8 py-4 text-xs tracking-[0.15em] transition-colors hover:border-foreground hover:bg-foreground hover:text-background"
+            className="mt-10 border border-accent px-8 py-4 text-xs tracking-[0.15em] text-accent transition-colors hover:border-accent hover:bg-accent hover:text-background"
           >
             INSTAGRAM 방문하기 ↗
           </a>
