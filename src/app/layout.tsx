@@ -3,7 +3,7 @@ import "./globals.css";
 
 const SITE_NAME = "감성글";
 const SITE_DESCRIPTION =
-  "하루 끝, 마음에 남는 한 문장 🌙 이별과 그리움, 일상 속 작은 위로. 당신의 마음을 대신 적어드립니다. 매일 밤, 마음 한 페이지.";
+  "하루 끝, 마음에 남는 한 문장 🌙. 이별과 그리움, 일상 속 작은 위로. 당신의 마음을 대신 적어드립니다. 매일 밤, 마음 한 페이지.";
 
 export const metadata: Metadata = {
   title: {
