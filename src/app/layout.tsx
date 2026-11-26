@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
+
+import { SiteLayout } from "@/components/layout";
+import { ThemeProvider } from "@/components/theme";
 import { SITE } from "@/lib/constants/site";
 import { createMetadata, createWebsiteStructuredData } from "@/lib/seo";
-import { ThemeProvider } from "@/components/theme";
+
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -25,7 +28,9 @@ export default function RootLayout({
           }}
         />
 
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <SiteLayout>{children}</SiteLayout>
+        </ThemeProvider>
       </body>
     </html>
   );

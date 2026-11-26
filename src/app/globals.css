@@ -1,36 +1,58 @@
 @import "tailwindcss";
 
 /* ========================================
-   Design Tokens
+  Design Tokens — Light
 ======================================== */
 
 :root {
-  --background: #080808;
-  --surface: #111111;
-  --surface-hover: #191919;
+  color-scheme: light;
 
-  --foreground: #f2f0eb;
-  --foreground-secondary: #b5b0aa;
-  --foreground-muted: #888888;
+  --background: #f4f0e9;
+  --surface: #eae4da;
+  --surface-hover: #e2dacf;
 
-  --border: #292929;
-  --accent: #d8d0c5;
+  --foreground: #302a25;
+  --foreground-secondary: #756d63;
+  --foreground-muted: #9a9187;
+
+  --border: #ded6ca;
+  --accent: #9b8064;
 
   --font-sans: Arial, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
-
-  color-scheme: dark;
 }
 
 /* ========================================
-   Tailwind Theme
+  Design Tokens — Dark
+======================================== */
+
+.dark {
+  color-scheme: dark;
+
+  --background: #171717;
+  --surface: #22211f;
+  --surface-hover: #2c2a27;
+
+  --foreground: #f1ece5;
+  --foreground-secondary: #aaa29a;
+  --foreground-muted: #77716b;
+
+  --border: #383531;
+  --accent: #c5ad91;
+}
+
+/* ========================================
+  Tailwind Theme
 ======================================== */
 
 @theme inline {
   --color-background: var(--background);
   --color-surface: var(--surface);
+  --color-surface-hover: var(--surface-hover);
+
   --color-foreground: var(--foreground);
   --color-secondary: var(--foreground-secondary);
   --color-muted: var(--foreground-muted);
+
   --color-border: var(--border);
   --color-accent: var(--accent);
 
@@ -38,7 +60,7 @@
 }
 
 /* ========================================
-   Reset
+  Reset
 ======================================== */
 
 * {
@@ -57,6 +79,9 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition:
+    background-color 250ms ease,
+    color 250ms ease;
 }
 
 button,
@@ -79,7 +104,7 @@ a {
 }
 
 /* ========================================
-   Utilities
+  Utilities
 ======================================== */
 
 .container {
@@ -96,7 +121,7 @@ a {
 }
 
 /* ========================================
-   Responsive
+  Responsive
 ======================================== */
 
 @media (max-width: 768px) {
@@ -108,6 +133,10 @@ a {
     padding-block: 80px;
   }
 }
+
+/* ========================================
+  Accessibility
+======================================== */
 
 @media (prefers-reduced-motion: reduce) {
   *,

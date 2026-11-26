@@ -4,12 +4,6 @@ import { postRepository } from "@/domains/post/repositories";
 import type { PostCategory } from "@/domains/post/types";
 import { SITE } from "@/lib/constants/site";
 
-const navigation = [
-  { label: "HOME", href: "/" },
-  { label: "ARCHIVE", href: "/archive" },
-  { label: "ABOUT", href: "/about" },
-];
-
 const categoryLabels: Record<PostCategory, string> = {
   comfort: "위로",
   relationship: "관계",
@@ -23,36 +17,6 @@ export default async function Home() {
 
   return (
     <main>
-      {/* Header */}
-      <header className="container">
-        <nav className="flex h-20 items-center justify-between border-b border-border">
-          <Link href="/" className="text-lg font-medium tracking-[0.12em]">
-            감성글
-          </Link>
-
-          <div className="hidden items-center gap-8 md:flex">
-            {navigation.map((item) => (
-              <Link
-                key={item.label}
-                href={item.href}
-                className="text-xs tracking-[0.16em] text-muted transition-colors hover:text-foreground"
-              >
-                {item.label}
-              </Link>
-            ))}
-
-            <a
-              href={SITE.instagram.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-xs tracking-[0.12em] text-foreground-secondary transition-colors hover:text-foreground"
-            >
-              INSTAGRAM ↗
-            </a>
-          </div>
-        </nav>
-      </header>
-
       {/* Hero */}
       <section className="container flex min-h-[680px] flex-col items-center justify-center text-center">
         <p className="mb-10 text-[10px] tracking-[0.35em] text-muted">
@@ -178,21 +142,6 @@ export default async function Home() {
           </a>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="border-t border-border">
-        <div className="container flex flex-col items-center justify-between gap-5 py-10 text-center md:flex-row">
-          <span className="text-sm tracking-[0.12em]">감성글</span>
-
-          <span className="text-[10px] tracking-wide text-muted">
-            당신의 오늘에 작은 위로가 되기를.
-          </span>
-
-          <span className="text-[10px] tracking-wider text-muted">
-            © {new Date().getFullYear()} 감성글
-          </span>
-        </div>
-      </footer>
     </main>
   );
 }
