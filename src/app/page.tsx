@@ -1,20 +1,8 @@
-const featuredQuotes = [
-  {
-    category: "위로",
-    content: "오늘 하루가 조금 아쉬웠어도,\n오늘은 여기까지면 충분해.",
-    author: "새벽의 편지",
-  },
-  {
-    category: "성장",
-    content: "지금도 충분히 잘하고 있어.\n조금 느려도 괜찮아.",
-    author: "새벽의 편지",
-  },
-  {
-    category: "관계",
-    content: "좋은 관계란,\n서로의 거리를 존중하는 것.",
-    author: "새벽의 편지",
-  },
-];
+import Link from "next/link";
+
+import { postRepository } from "@/domains/post/repositories";
+import type { PostCategory } from "@/domains/post/types";
+import { SITE } from "@/lib/constants/site";
 
 const navigation = [
   { label: "HOME", href: "/" },
@@ -22,31 +10,41 @@ const navigation = [
   { label: "ABOUT", href: "/about" },
 ];
 
-export default function Home() {
+const categoryLabels: Record<PostCategory, string> = {
+  comfort: "위로",
+  relationship: "관계",
+  growth: "성장",
+  daily: "일상",
+  love: "사랑",
+};
+
+export default async function Home() {
+  const featuredQuotes = await postRepository.getFeatured();
+
   return (
     <main>
       {/* Header */}
       <header className="container">
         <nav className="flex h-20 items-center justify-between border-b border-border">
-          <a href="/" className="text-lg font-medium tracking-[0.12em]">
-            새벽의 편지
-          </a>
+          <Link href="/" className="text-lg font-medium tracking-[0.12em]">
+            감성글
+          </Link>
 
           <div className="hidden items-center gap-8 md:flex">
             {navigation.map((item) => (
-              <a
+              <Link
                 key={item.label}
                 href={item.href}
                 className="text-xs tracking-[0.16em] text-muted transition-colors hover:text-foreground"
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
 
             <a
-              href="https://www.instagram.com/"
+              href={SITE.instagram.url}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="text-xs tracking-[0.12em] text-foreground-secondary transition-colors hover:text-foreground"
             >
               INSTAGRAM ↗
@@ -72,12 +70,12 @@ export default function Home() {
           너만의 속도로 걸어가면 돼.
         </p>
 
-        <a
+        <Link
           href="/archive"
           className="mt-14 border border-border px-8 py-4 text-xs tracking-[0.15em] transition-colors hover:border-foreground hover:bg-foreground hover:text-background"
         >
           글귀 둘러보기 →
-        </a>
+        </Link>
 
         <div className="mt-24 flex flex-col items-center gap-3">
           <span className="h-10 w-px bg-border" />
@@ -100,9 +98,7 @@ export default function Home() {
             당신의 오늘도 충분히 소중하니까.
           </h2>
 
-          <p className="mt-8 text-xs tracking-widest text-muted">
-            — 새벽의 편지
-          </p>
+          <p className="mt-8 text-xs tracking-widest text-muted">— 감성글</p>
         </div>
       </section>
 
@@ -118,34 +114,43 @@ export default function Home() {
             </h2>
           </div>
 
-          <a
+          <Link
             href="/archive"
             className="text-xs tracking-wide text-muted transition-colors hover:text-foreground"
           >
             전체 보기 ↗
-          </a>
+          </Link>
         </div>
 
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-          {featuredQuotes.map((quote, index) => (
-            <article
-              key={quote.category}
-              className="flex min-h-[320px] flex-col items-center justify-center border border-border bg-surface p-8 text-center transition-colors hover:bg-surface-hover"
-            >
-              <span className="mb-10 text-[10px] tracking-[0.25em] text-muted">
-                0{index + 1} / {quote.category}
-              </span>
+        {featuredQuotes.length === 0 ? (
+          <p className="py-20 text-center text-sm text-muted">
+            아직 등록된 추천 게시글이 없습니다.
+          </p>
+        ) : (
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+            {featuredQuotes.map((post, index) => (
+              <Link
+                key={post.id}
+                href={`/archive/${post.slug}`}
+                className="group"
+              >
+                <article className="flex min-h-[320px] flex-col items-center justify-center border border-border bg-surface p-8 text-center transition-colors hover:bg-surface-hover">
+                  <span className="mb-10 text-[10px] tracking-[0.25em] text-muted">
+                    0{index + 1} / {categoryLabels[post.category]}
+                  </span>
 
-              <p className="whitespace-pre-line text-base leading-[2.2] tracking-wide text-foreground-secondary">
-                {quote.content}
-              </p>
+                  <p className="whitespace-pre-line text-base leading-[2.2] tracking-wide text-foreground-secondary transition-colors group-hover:text-foreground">
+                    {post.excerpt}
+                  </p>
 
-              <span className="mt-10 text-[10px] tracking-widest text-muted">
-                {quote.author}
-              </span>
-            </article>
-          ))}
-        </div>
+                  <span className="mt-10 text-[10px] tracking-widest text-muted">
+                    감성글
+                  </span>
+                </article>
+              </Link>
+            ))}
+          </div>
+        )}
       </section>
 
       {/* Instagram CTA */}
@@ -164,9 +169,9 @@ export default function Home() {
           </p>
 
           <a
-            href="https://www.instagram.com/"
+            href={SITE.instagram.url}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             className="mt-10 border border-border px-8 py-4 text-xs tracking-[0.15em] transition-colors hover:border-foreground hover:bg-foreground hover:text-background"
           >
             INSTAGRAM 방문하기 ↗
@@ -177,14 +182,14 @@ export default function Home() {
       {/* Footer */}
       <footer className="border-t border-border">
         <div className="container flex flex-col items-center justify-between gap-5 py-10 text-center md:flex-row">
-          <span className="text-sm tracking-[0.12em]">새벽의 편지</span>
+          <span className="text-sm tracking-[0.12em]">감성글</span>
 
           <span className="text-[10px] tracking-wide text-muted">
             당신의 오늘에 작은 위로가 되기를.
           </span>
 
           <span className="text-[10px] tracking-wider text-muted">
-            © {new Date().getFullYear()} 새벽의 편지
+            © {new Date().getFullYear()} 감성글
           </span>
         </div>
       </footer>
