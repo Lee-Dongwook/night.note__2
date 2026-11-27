@@ -12,13 +12,14 @@
   --surface-hover: #e2dacf;
 
   --foreground: #302a25;
-  --foreground-secondary: #756d63;
-  --foreground-muted: #9a9187;
+  --foreground-secondary: #5d544b;
+  --foreground-muted: #6e645b;
 
   --border: #ded6ca;
-  --accent: #9b8064;
+  --accent: #785c40;
 
-  --font-sans: Arial, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --font-sans: var(--font-sans-kr), "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --font-serif: var(--font-gowun-batang), "AppleMyungjo", Georgia, serif;
 }
 
 /* ========================================
@@ -33,8 +34,8 @@
   --surface-hover: #2c2a27;
 
   --foreground: #f1ece5;
-  --foreground-secondary: #aaa29a;
-  --foreground-muted: #77716b;
+  --foreground-secondary: #b6aea6;
+  --foreground-muted: #958e86;
 
   --border: #383531;
   --accent: #c5ad91;
@@ -57,6 +58,7 @@
   --color-accent: var(--accent);
 
   --font-sans: var(--font-sans);
+  --font-serif: var(--font-serif);
 }
 
 /* ========================================
@@ -78,6 +80,8 @@
     background: var(--background);
     color: var(--foreground);
     font-family: var(--font-sans);
+    word-break: keep-all;
+    overflow-wrap: break-word;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     transition:
@@ -88,6 +92,12 @@
   button,
   a {
     -webkit-tap-highlight-color: transparent;
+  }
+
+  button:focus-visible,
+  a:focus-visible {
+    outline: 2px solid var(--foreground);
+    outline-offset: 2px;
   }
 
   button {

@@ -13,17 +13,17 @@ export const metadata: Metadata = createMetadata({
 
 export default function AboutPage() {
   return (
-    <main className="container min-h-screen py-24">
+    <main className="container min-h-screen py-20 md:py-24">
       <header className="mx-auto max-w-2xl text-center">
-        <p className="mb-8 text-[10px] tracking-[0.35em] text-muted">
+        <p className="mb-8 text-[11px] tracking-[0.35em] text-muted">
           ABOUT US
         </p>
 
-        <h1 className="text-3xl font-normal tracking-wide md:text-4xl">
+        <h1 className="font-serif text-3xl font-normal tracking-wide md:text-4xl">
           감성글
         </h1>
 
-        <p className="mt-8 whitespace-pre-line text-sm leading-[2.2] tracking-wide text-foreground-secondary md:text-base">
+        <p className="mt-8 whitespace-pre-line text-sm leading-[2.2] tracking-wide text-secondary md:text-base">
           어떤 문장은 짧지만 오래 남습니다.
           {"\n"}
           무심코 지나쳤던 감정이 문장 하나로 선명해지기도 합니다.
@@ -31,11 +31,11 @@ export default function AboutPage() {
       </header>
 
       <section className="mx-auto mt-28 max-w-2xl border-y border-border py-16 text-center">
-        <p className="mb-8 text-[10px] tracking-[0.3em] text-muted">
+        <p className="mb-8 text-[11px] tracking-[0.3em] text-muted">
           OUR STORY
         </p>
 
-        <h2 className="whitespace-pre-line text-xl font-normal leading-loose md:text-2xl">
+        <h2 className="whitespace-pre-line font-serif text-xl font-normal leading-loose md:text-2xl">
           평범한 하루 속에서{"\n"}
           마음에 남는 순간들을 기록합니다.
         </h2>
@@ -51,9 +51,9 @@ export default function AboutPage() {
       </section>
 
       <section className="mx-auto mt-24 max-w-2xl text-center">
-        <p className="mb-6 text-[10px] tracking-[0.3em] text-muted">FIND US</p>
+        <p className="mb-6 text-[11px] tracking-[0.3em] text-muted">FIND US</p>
 
-        <h2 className="text-xl font-normal">Instagram</h2>
+        <h2 className="font-serif text-xl font-normal">Instagram</h2>
 
         <p className="mt-5 text-sm text-secondary">
           감성글의 새로운 문장과 이야기를 만나보세요.
