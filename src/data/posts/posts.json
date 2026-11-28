@@ -12,5 +12,19 @@
     "publishedAt": "2026-11-26T09:00:00+09:00",
     "featured": true,
     "status": "published"
+  },
+  {
+    "id": "post-002",
+    "slug": "slow-is-enough",
+    "title": "지금도 충분히 잘하고 있어.",
+    "excerpt": "좋은 하루는 생각보다 가까이에 있을지도 몰라",
+    "content": "지금도 충분히 잘하고 있어.\n조금 느려도 괜찮아,\n가끔 쉬어가도 괜찮아.\n\n오늘도 너는,\n분명히 더 나은 하루를\n만들 수 있을거야.",
+    "category": "comfort",
+    "image": "/images/posts/post-002.webp",
+    "imageAlt": "내일은 조금 더 웃을 수 있기를",
+    "ogImage": "/images/og/post-002.png",
+    "publishedAt": "2026-11-28T09:00:00+09:00",
+    "featured": true,
+    "status": "published"
   }
 ]
